@@ -5,7 +5,20 @@ class Usuario(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
-    apellido = db.Column(db.String(100), nullable=False)
-    email = db.Column(db.String(150), unique=True, nullable=False)
-    password = db.Column(db.String(255), nullable=False)
+    apellidoPaterno = db.Column(db.String(100), nullable=False)
+    apellidoMaterno = db.Column(db.String(100), nullable=True)
+    correo = db.Column(db.String(150), unique=True, nullable=False)
+    telefono = db.Column(db.String(20), nullable=True)
+    contrasena = db.Column(db.String(255), nullable=False)
+    fechaNacimiento = db.Column(db.Date, nullable=True)
     activo = db.Column(db.Boolean, default=True, nullable=False)
+
+    #tipo guarda el tipo de usuario es
+    tipo = db.Column(db.String(20), nullable=False)
+
+    # __mapper_args__ hace que SQLAlchemy use ese valor para distinguir
+    # entre usuario, paciente, medico o administrador
+    __mapper_args__ ={
+        "polymorphic_identity" : "usuario",
+        "polymorphic_on" : tipo,
+    }

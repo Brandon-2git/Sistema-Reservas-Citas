@@ -1,14 +1,15 @@
-from flask import Flask
+
 from dotenv import load_dotenv
+load_dotenv()
+
+from flask import Flask
 import os
 
 from database.database import db
+from routers.autenticacion_routes import autenticacion_bp
+from routers.usuario_routes import usuario_bp
+from models import usuario, paciente, administrador, medico
 
-load_dotenv()
-print("USER:", os.getenv("DB_USER"))
-print("HOST:", os.getenv("DB_HOST"))
-print("PORT:", os.getenv("DB_PORT"))
-print("NAME:", os.getenv("DB_NAME"))
 
 app = Flask(__name__)
 
@@ -23,9 +24,12 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db.init_app(app)
 
+app.register_blueprint(autenticacion_bp)
+app.register_blueprint(usuario_bp)
+
 with app.app_context():
     db.engine.connect()
-    print("Conexión a MySQL exitosa")
+    print("Conexión a MySQL exitosa y tablas verificadas")
 
 
 if __name__ == "__main__":

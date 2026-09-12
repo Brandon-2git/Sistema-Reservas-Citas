@@ -9,3 +9,7 @@ class Paciente(Usuario):
         db.ForeignKey("usuarios.id"),
         primary_key=True
     )
+
+    __mapper_args__ = {
+    "polymorphic_identity": "paciente",
+}
