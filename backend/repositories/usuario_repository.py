@@ -23,12 +23,6 @@ def guardar(usuario):
     db.session.commit()
     return usuario
 
-#Guarda un nuevo médico en la base de datos
-def crear_medico(medico):
-    db.session.add(medico)
-    db.session.commit()
-    return medico
-
 #confirma y guarda los cambios pendientes en al base de datos
 def guardar_cambios():
     db.session.commit()

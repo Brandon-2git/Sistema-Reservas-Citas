@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gestión de usuarios</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/usuarios.css">
+</head>
+
+<body>
+
+    <!-- =========================================
+         CONTENEDOR PRINCIPAL
+    ========================================== -->
+    <div class="app">
+
+
+        <!-- =========================================
+             BARRA LATERAL
+        ========================================== -->
+        <aside class="sidebar">
+
+            <!-- Logo y nombre -->
+            <div class="sidebar-header">
+
+                <div class="logo">
+                    ⚙
+                </div>
+
+                <div>
+                    <h2>MediCita</h2>
+                    <span>ADMIN</span>
+                </div>
+
+            </div>
+
+
+            <!-- Navegación -->
+            <nav class="sidebar-nav">
+
+                <p class="nav-title">
+                    ADMINISTRACIÓN
+                </p>
+
+                <a href="#" class="nav-item active">
+                    <span>♙</span>
+                    <span>Usuarios</span>
+                </a>
+
+                <a href="#" class="nav-item">
+                    <span>♧</span>
+                    <span>Especialidades</span>
+                </a>
+
+                <a href="#" class="nav-item">
+                    <span>♙</span>
+                    <span>Mi perfil</span>
+                </a>
+
+            </nav>
+
+
+            <!-- Usuario del sistema -->
+            <div class="sidebar-footer">
+
+                <div class="user-info">
+
+                    <div class="user-avatar">
+                        AD
+                    </div>
+
+                    <div>
+                        <strong>Ana Delgado</strong>
+                        <span>Administrador</span>
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="btnCerrarSesion"
+                >
+                    ↪ Cerrar sesión
+                </button>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- =========================================
+             CONTENIDO DERECHO
+        ========================================== -->
+        <div class="content">
+
+
+            <!-- =========================================
+                 BARRA SUPERIOR
+            ========================================== -->
+            <header class="topbar">
+
+                <button
+                    type="button"
+                    class="menu-button"
+                >
+                    ☰
+                </button>
+
+
+                <h1>
+                    Gestión de usuarios
+                </h1>
+
+
+                <!-- Usuario actual -->
+                <div class="topbar-user">
+
+                    <span class="role">
+                        ⚙ Administrador
+                    </span>
+
+                    <div class="user-avatar">
+                        AD
+                    </div>
+
+                    <strong>
+                        Ana Delgado
+                    </strong>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- =========================================
+                 CONTENIDO PRINCIPAL
+            ========================================== -->
+            <main class="main-content">
+
+
+                <!-- =========================================
+                     ENCABEZADO
+                ========================================== -->
+                <section class="page-header">
+
+                    <div class="page-title">
+
+                        <h2>
+                            Gestión de usuarios
+                        </h2>
+
+                        <p>
+                            Consulta, edita y desactiva cuentas del sistema.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Botón para mostrar formulario -->
+                    <button
+                        type="button"
+                        id="btnAltaMedico"
+                        class="btn-alta-medico"
+                    >
+
+                        <span>+</span>
+
+                        Dar de alta médico
+
+                    </button>
+
+                </section>
+
+
+
+                <!-- =========================================
+                     VISTA DE USUARIOS
+                     
+                     Contiene:
+                     - Buscador
+                     - Filtros
+                     - Tabla
+                ========================================== -->
+                <div id="vistaUsuarios">
+
+
+                    <!-- =====================================
+                         FILTROS
+                    ====================================== -->
+                    <section class="filters">
+
+
+                        <!-- Buscador -->
+                        <div class="search-container">
+
+                            <span>
+                                ⌕
+                            </span>
+
+                            <input
+                                type="search"
+                                id="buscarUsuario"
+                                placeholder="Buscar por nombre o correo..."
+                            >
+
+                        </div>
+
+
+                        <!-- Filtros por tipo -->
+                        <div class="filter-tabs">
+
+
+                            <!-- Todos -->
+                            <button
+                                type="button"
+                                class="filter-tab active"
+                                data-tipo=""
+                            >
+                                Todos
+                                (
+                                <span id="totalUsuarios">
+                                    0
+                                </span>
+                                )
+                            </button>
+
+
+                            <!-- Pacientes -->
+                            <button
+                                type="button"
+                                class="filter-tab"
+                                data-tipo="paciente"
+                            >
+                                Pacientes
+                                (
+                                <span id="totalPacientes">
+                                    0
+                                </span>
+                                )
+                            </button>
+
+
+                            <!-- Médicos -->
+                            <button
+                                type="button"
+                                class="filter-tab"
+                                data-tipo="medico"
+                            >
+                                Médicos
+                                (
+                                <span id="totalMedicos">
+                                    0
+                                </span>
+                                )
+                            </button>
+
+
+                            <!-- Administradores -->
+                            <button
+                                type="button"
+                                class="filter-tab"
+                                data-tipo="administrador"
+                            >
+                                Admins
+                                (
+                                <span id="totalAdministradores">
+                                    0
+                                </span>
+                                )
+                            </button>
+
+                        </div>
+
+                    </section>
+
+
+
+                    <!-- =====================================
+                         TABLA DE USUARIOS
+                    ====================================== -->
+                    <section class="users-section">
+
+                        <table id="tablaUsuarios">
+
+
+                            <!-- Encabezados -->
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        USUARIO
+                                    </th>
+
+                                    <th>
+                                        ROL
+                                    </th>
+
+                                    <th>
+                                        TELÉFONO
+                                    </th>
+
+                                    <th>
+                                        ESTADO
+                                    </th>
+
+                                    <th>
+                                        ACCIONES
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <!-- Usuarios -->
+                            <tbody id="cuerpoTablaUsuarios">
+
+                                <!--
+                                    Esta sección se llena
+                                    dinámicamente desde usuarios.js
+                                -->
+
+                            </tbody>
+
+                        </table>
+
+                    </section>
+
+                </div>
+
+
+
+                <!-- =========================================
+                     VISTA: REGISTRAR MÉDICO
+                     
+                     Esta sección comienza oculta.
+                     JavaScript la mostrará al presionar:
+                     "Dar de alta médico"
+                ========================================== -->
+                <section
+                    id="vistaAltaMedico"
+                    class="registro-medico"
+                >
+
+                    <h2>
+                        Registrar nuevo médico
+                    </h2>
+
+
+                    <!-- Formulario -->
+                    <form id="formularioMedico">
+
+
+                        <!-- Nombre -->
+                        <div class="form-group">
+
+                            <label for="nombre">
+                                Nombre
+                            </label>
+
+                            <input
+                                type="text"
+                                id="nombre"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- Apellido paterno -->
+                        <div class="form-group">
+
+                            <label for="apellidoPaterno">
+                                Apellido paterno
+                            </label>
+
+                            <input
+                                type="text"
+                                id="apellidoPaterno"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- Apellido materno -->
+                        <div class="form-group">
+
+                            <label for="apellidoMaterno">
+                                Apellido materno
+                            </label>
+
+                            <input
+                                type="text"
+                                id="apellidoMaterno"
+                            >
+
+                        </div>
+
+
+                        <!-- Correo -->
+                        <div class="form-group">
+
+                            <label for="correo">
+                                Correo electrónico
+                            </label>
+
+                            <input
+                                type="email"
+                                id="correo"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- Teléfono -->
+                        <div class="form-group">
+
+                            <label for="telefono">
+                                Teléfono
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="telefono"
+                            >
+
+                        </div>
+
+
+                        <!-- Contraseña -->
+                        <div class="form-group">
+
+                            <label for="contrasena">
+                                Contraseña temporal
+                            </label>
+
+                            <input
+                                type="password"
+                                id="contrasena"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- Cédula profesional -->
+                        <div class="form-group">
+
+                            <label for="cedulaProfesional">
+                                Cédula profesional
+                            </label>
+
+                            <input
+                                type="text"
+                                id="cedulaProfesional"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- Consultorio -->
+                        <div class="form-group">
+
+                            <label for="consultorio">
+                                Consultorio
+                            </label>
+
+                            <input
+                                type="text"
+                                id="consultorio"
+                            >
+
+                        </div>
+
+
+                        <!-- Horas máximas -->
+                        <div class="form-group">
+
+                            <label for="horasMaximas">
+                                Horas máximas semanales
+                            </label>
+
+                            <input
+                                type="number"
+                                id="horasMaximas"
+                            >
+
+                        </div>
+
+
+                        <!-- Botón -->
+                        <button
+                            type="submit"
+                        >
+                            Registrar médico
+                        </button>
+
+                    </form>
+
+                </section>
+
+            </main>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================== -->
+
+    <!-- Configuración de la API -->
+    <script src="../js/config.js"></script>
+
+    <!-- Lógica de usuarios -->
+    <script src="../js/usuarios.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+</head>
+<body>
+
+    <main>
+
+        <!--  Encabezaod  -->
+        <header>
+            <h1>CLINICA INTEGRAL SALUD</h1>
+            <p>PORTAL DE PACIENTES</p>
+        </header>
+
+        <!--  contenido principal -->
+        <section>
+
+            <!--  Información de la clinica  -->
+            <div>
+                <h2>¡DESCUBRE NUESTRAS ESPECIALIDADES</h2>
+                <ul>
+                    <li>Pediatría</li>
+                    <li>Ginecología</li>
+                    <li>Odontología</li>
+                    <li>Medicina General</li>
+                    <li>Cardiología</li>
+                </ul>
+
+                <div>
+                    <h3>¡PROMOCIÓN DEL MES!</h3>
+                    <P>20% DE DESCUENTO EN CHECK-UP GENERAL</P>
+                </div>
+
+            </div>
+
+            <!--  Formulario de registro  -->
+            <div>
+                <h2>REGISTRATE COMO PACIENTE</h2>
+                <P>
+                    Crea tu cuenta para gestionar tus citas médicas.
+                </P>
+
+                <form id="registroForm">
+                    <!--  Nombre  -->
+                      <div>
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre" required >
+                      </div>
+
+                    <!-- Apellido paterno -->
+                    <div>
+                        <label for="apellidoPaterno">Apellido paterno</label>
+                        <input type="text" id="apellidoPaterno" name="apellidoPaterno" placeholder="Escribe tu apellido paterno" required >
+                    </div>
+
+                    <!-- Apellido materno -->
+                    <div>
+                        <label for="apellidoMaterno">Apellido materno</label>
+                        <input
+                            type="text"
+                            id="apellidoMaterno"
+                            name="apellidoMaterno"
+                            placeholder="Escribe tu apellido materno"
+                        >
+                    </div>
+
+                    <!-- Fecha de nacimiento -->
+                    <div>
+                        <label for="fechaNacimiento">Fecha de nacimiento</label>
+                        <input
+                            type="date"
+                            id="fechaNacimiento"
+                            name="fechaNacimiento"
+                        >
+                    </div>  
+
+                    <!-- Teléfono -->
+                    <div>
+                        <label for="telefono">Teléfono</label>
+                        <input
+                            type="tel"
+                            id="telefono"
+                            name="telefono"
+                            placeholder="Escribe tu teléfono"
+                        >
+                    </div>
+
+                    <!-- Correo -->
+                    <div>
+                        <label for="correo">Correo electrónico</label>
+                        <input
+                            type="email"
+                            id="correo"
+                            name="correo"
+                            placeholder="ejemplo@correo.com"
+                            required
+                        >
+                    </div>
+
+                    <!-- Contraseña -->
+                    <div>
+                        <label for="contrasena">Contraseña</label>
+                        <input
+                            type="password"
+                            id="contrasena"
+                            name="contrasena"
+                            placeholder="Crea una contraseña"
+                            required
+                        >
+                    </div>
+
+                    <!-- Botón -->
+                    <button type="submit">
+                        CREAR CUENTA
+                    </button>
+                </form>
+
+                <!-- Inicio de sesión -->
+                <p>
+                    ¿Ya tienes cuenta?
+                    <a href="login">INICIAR SESIÓN</a>
+                </p>
+
+            </div>
+        </section>
+
+
+    </main>
+
+<script src="../js/config.js"></script>
+<script src="../js/registro.js"></script> 
+</body>
+</html>

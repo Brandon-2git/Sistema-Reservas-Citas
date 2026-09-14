@@ -7,10 +7,10 @@ class Usuario(db.Model):
     nombre = db.Column(db.String(100), nullable=False)
     apellidoPaterno = db.Column(db.String(100), nullable=False)
     apellidoMaterno = db.Column(db.String(100), nullable=True)
+    fechaNacimiento = db.Column(db.Date, nullable=True)
     correo = db.Column(db.String(150), unique=True, nullable=False)
     telefono = db.Column(db.String(20), nullable=True)
     contrasena = db.Column(db.String(255), nullable=False)
-    fechaNacimiento = db.Column(db.Date, nullable=True)
     activo = db.Column(db.Boolean, default=True, nullable=False)
 
     #tipo guarda el tipo de usuario es

@@ -14,3 +14,5 @@ venv/
 
 # Sistema operativo
 .DS_Store
+
+frontend/js/config.js
