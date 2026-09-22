@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portal de pacientes para la Clínica Integral Salud. Inicia sesión para gestionar tus citas.">
+    <title>Iniciar Sesión - Clínica Integral Salud</title>
+    
+    <!-- Fuentes de Google: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Iconos FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+    <div class="contenedor-login">
+        <div class="tarjeta-login">
+            
+            <!-- Lado Izquierdo: Branding e Información -->
+            <div class="seccion-informacion">
+                <div class="marca-clinica">
+                    <div class="caja-icono">
+                        <i class="fa-solid fa-notes-medical"></i>
+                    </div>
+                    <h2>Clínica Integral Salud</h2>
+                </div>
+                
+                <div class="contenido-informacion">
+                    <h3>Tu salud en las mejores manos.</h3>
+                    <p>Bienvenido a tu portal de pacientes. Gestiona tu historial y comunícate con nuestros especialistas.</p>
+                    
+                    <ul class="lista-caracteristicas">
+                        <li>
+                            <i class="fa-solid fa-calendar-check"></i>
+                            <span>Reserva de citas en línea 24/7</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-file-medical"></i>
+                            <span>Acceso rápido a tu historial médico</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-user-doctor"></i>
+                            <span>Conexión directa con especialistas</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="info-footer">
+                    <p>&copy; 2024 Clínica Integral Salud. Cuidando de ti.</p>
+                </div>
+            </div>
+            
+            <!-- Lado Derecho: Formulario de Login -->
+            <div class="seccion-formulario">
+                <div class="form-header">
+                    <h2>Iniciar Sesión</h2>
+                    <p>Accede para gestionar tus citas médicas</p>
+                </div>
+                
+                <form id="formularioLogin" class="formulario" action="#" method="POST">
+                    
+                    <!-- Campo: Correo Electrónico -->
+                    <div class="grupo-campo">
+                        <label for="correo">Correo Electrónico</label>
+                        <div class="contenedor-input">
+                            <i class="fa-regular fa-envelope"></i>
+                            <input type="email" id="correo" placeholder="ejemplo@correo.com" required autocomplete="email">
+                        </div>
+                    </div>
+                    
+                    <!-- Campo: Contraseña -->
+                    <div class="grupo-campo">
+                        <label for="contrasena">Contraseña</label>
+                        <div class="contenedor-input">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="contrasena" placeholder="••••••••" required autocomplete="current-password">
+                            <button type="button" class="boton-mostrar-clave" aria-label="Mostrar contraseña">
+                                <i class="fa-regular fa-eye-slash"></i>
+                            </button>
+                        </div>
+                        <a href="#" class="enlace-olvidaste-clave">¿Olvidaste tu contraseña?</a>
+                    </div>
+                    
+                    <!-- Botón Enviar -->
+                    <button type="submit" class="boton-principal">
+                        Ingresar <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                    </button>
+                    <!-- Contenedor para mensajes de error -->
+                    <p id="mensajeError" style="color: #ef4444; font-size: 0.9rem; text-align: center; display: none; margin-top: 10px;"></p>
+                </form>
+                
+                <!-- Footer del formulario (Registro) -->
+                <div class="form-footer">
+                    <p>¿Aún no tienes cuenta en la clínica?</p>
+                    <a href="registro.html" class="boton-secundario">Regístrate Aquí</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Script de interactividad exclusivo para el inicio de sesión -->
+    <script src="../js/login.js"></script>
+</body>
+</html>
