@@ -45,7 +45,7 @@ async function cargarUsuarios() {
         }
 
         usuarios = await respuesta.json();
-
+        console.log("Usuarios recibidos:", usuarios);
         actualizarContadores();
 
         mostrarUsuarios();
@@ -137,7 +137,19 @@ function mostrarUsuarios() {
         const rol =
             usuario.tipo || "Sin rol";
 
+        const claseRol =
+            usuario.tipo?.toLowerCase() === "administrador"
+                ? "rol-admin"
+                : usuario.tipo?.toLowerCase() === "medico"
+                    ? "rol-medico"
+                    : "rol-default";
 
+        const claseAvatar =
+            usuario.tipo?.toLowerCase() === "administrador"
+                ? "avatar-admin"
+                : usuario.tipo?.toLowerCase() === "medico"
+                    ? "avatar-medico"
+                    : "avatar-default";
         // Texto del estado.
         const estado =
             usuario.activo ? "Activo" : "Inactivo";
@@ -147,7 +159,7 @@ function mostrarUsuarios() {
             <td>
                 <div class="usuario">
 
-                    <div class="usuario-avatar">
+                    <div class="usuario-avatar ${claseAvatar}">
                         ${iniciales}
                     </div>
 
@@ -165,7 +177,7 @@ function mostrarUsuarios() {
             </td>
 
             <td>
-                <span class="rol">
+                <span class="rol ${claseRol}">
                     ${rol}
                 </span>
             </td>
