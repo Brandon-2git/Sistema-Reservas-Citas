@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCita Salud – Sistema de Reserva de Citas</title>
+    <meta name="description" content="Sistema integral para gestión de citas médicas, especialidades, agenda médica y administración de usuarios.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f4f8 0%, #e2e8f0 100%);
+            color: #0f172a;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .container {
+            max-width: 1060px;
+            margin: 0 auto;
+            padding: 48px 24px;
+            width: 100%;
+        }
+
+        .hero-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #dbeafe;
+            color: #1d4ed8;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+
+        .hero-title {
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: -0.8px;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+
+        .hero-desc {
+            font-size: 16px;
+            color: #64748b;
+            max-width: 620px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .grid-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 18px;
+            padding: 28px 24px;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.12);
+            border-color: #3b82f6;
+        }
+
+        .feature-card.highlight {
+            border: 2px solid #2563eb;
+            background: linear-gradient(180deg, #ffffff 0%, #f0f7ff 100%);
+        }
+
+        .feature-tag {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 3px 8px;
+            border-radius: 6px;
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .card-icon-box {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card:nth-child(1) .card-icon-box { background: #dbeafe; color: #1d4ed8; }
+        .feature-card:nth-child(2) .card-icon-box { background: #dcfce7; color: #15803d; }
+        .feature-card:nth-child(3) .card-icon-box { background: #fef9c3; color: #a16207; }
+        .feature-card:nth-child(4) .card-icon-box { background: #f3e8ff; color: #7c3aed; }
+
+        .feature-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .feature-detail {
+            font-size: 13.5px;
+            color: #64748b;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .feature-cta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: #2563eb;
+            padding-top: 14px;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .feature-card:hover .feature-cta span.arrow {
+            transform: translateX(4px);
+        }
+
+        .feature-cta span.arrow {
+            transition: transform 0.2s ease;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 24px;
+            font-size: 13px;
+            color: #94a3b8;
+            border-top: 1px solid #e2e8f0;
+            background: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        
+        <header class="hero-header">
+            <div class="hero-badge">
+                <span>🏥</span> Sistema Integral de Reservas y Gestión Médica
+            </div>
+            <h1 class="hero-title">MediCita Salud</h1>
+            <p class="hero-desc">
+                Plataforma integral con soporte para agendamiento de citas con ventana emergente de especialidades, portal médico con agenda integrada y administración de usuarios.
+            </p>
+        </header>
+
+        <section class="grid-features">
+
+            <!-- Tarjeta 1: Reservar Cita (HU Especialidad en Modal) -->
+            <a href="pages/citas.html" class="feature-card highlight">
+                <span class="feature-tag">HU Integrada</span>
+                <div>
+                    <div class="card-icon-box">📅</div>
+                    <h2 class="feature-title">Reservar Cita</h2>
+                    <p class="feature-detail">
+                        Agendamiento de consultas médicas con <strong>Ventana Emergente (Modal)</strong> para elegir especialidad con buscador en tiempo real.
+                    </p>
+                </div>
+                <div class="feature-cta">
+                    <span>Agendar Cita</span>
+                    <span class="arrow">→</span>
+                </div>
+            </a>
+
+            <!-- Tarjeta 2: Portal Médico (HU Agenda en Botón) -->
+            <a href="pages/medico.html" class="feature-card highlight">
+                <span class="feature-tag">HU Integrada</span>
+                <div>
+                    <div class="card-icon-box">🩺</div>
+                    <h2 class="feature-title">Portal del Médico</h2>
+                    <p class="feature-detail">
+                        Dashboard clínico del especialista con acceso directo a <strong>Mi Agenda</strong> mediante botón dedicado, vista de día/semana y pacientes.
+                    </p>
+                </div>
+                <div class="feature-cta">
+                    <span>Ver Portal & Agenda</span>
+                    <span class="arrow">→</span>
+                </div>
+            </a>
+
+            <!-- Tarjeta 3: Gestión de Usuarios -->
+            <a href="pages/usuarios.html" class="feature-card">
+                <div>
+                    <div class="card-icon-box">👥</div>
+                    <h2 class="feature-title">Gestión de Usuarios</h2>
+                    <p class="feature-detail">
+                        Panel de administración para alta, edición, búsqueda y control de acceso de médicos, pacientes y administradores.
+                    </p>
+                </div>
+                <div class="feature-cta">
+                    <span>Administrar Usuarios</span>
+                    <span class="arrow">→</span>
+                </div>
+            </a>
+
+            <!-- Tarjeta 4: Registro de Pacientes -->
+            <a href="pages/signup.html" class="feature-card">
+                <div>
+                    <div class="card-icon-box">📝</div>
+                    <h2 class="feature-title">Registro de Paciente</h2>
+                    <p class="feature-detail">
+                        Formulario de registro público para que nuevos pacientes creen su expediente y puedan comenzar a agendar citas.
+                    </p>
+                </div>
+                <div class="feature-cta">
+                    <span>Crear Cuenta</span>
+                    <span class="arrow">→</span>
+                </div>
+            </a>
+
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        MediCita Salud &copy; 2026 — Sistema de Reservas de Citas Médicas
+    </footer>
+
+</body>
+</html>
