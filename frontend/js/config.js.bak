@@ -1,0 +1,2 @@
+// este es mi url que funciona en mi equipo
+const API_BASE_URL = "http://172.17.89.112:5000";

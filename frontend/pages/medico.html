@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Médico – MediCita Salud</title>
+    <meta name="description" content="Panel de control del médico para consultar pacientes y visualizar la agenda diaria y semanal.">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/medico.css">
+    <link rel="stylesheet" href="../css/agenda.css">
+</head>
+<body>
+
+    <!-- ===== HEADER DEL MÉDICO ===== -->
+    <header class="header-medico">
+        <div class="header-marca">
+            <div class="header-icono">🩺</div>
+            <div class="header-titulo">
+                <h1>Clínica Integral Salud</h1>
+                <p>Panel Médico & Consultas</p>
+            </div>
+        </div>
+
+        <div class="header-actions">
+            <!-- Botón solicitado: Acceso a Mi Agenda desde la página del médico -->
+            <button type="button" class="btn-agenda-header" id="btn-abrir-agenda-header" aria-label="Abrir mi agenda">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                <span>Mi Agenda</span>
+                <span class="agenda-badge-count">6</span>
+            </button>
+
+            <a href="citas.html" style="text-decoration:none; font-size:13.5px; font-weight:600; color:#2563eb; padding:8px 12px; border-radius:8px; background:#eff6ff;">
+                + Nueva Cita
+            </a>
+
+            <div class="header-usuario">
+                <div class="info-medico-header">
+                    <div class="nombre-medico">Dr. Roberto Silva</div>
+                    <div class="especialidad-medico">Cardiología · Consultorio 108</div>
+                </div>
+                <div class="avatar-medico">RS</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== CONTENIDO PRINCIPAL ===== -->
+    <main class="contenido-principal">
+
+        <!-- Banner con botón destacado para abrir la agenda -->
+        <section class="welcome-banner">
+            <div class="welcome-text">
+                <h2>¡Bienvenido, Dr. Silva!</h2>
+                <p>Tiene 6 pacientes programados para hoy en el Consultorio 108. Consulte o actualice su agenda con un solo clic.</p>
+            </div>
+            <button type="button" class="btn-banner-agenda" id="btn-abrir-agenda-banner">
+                <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                Abrir Mi Agenda
+            </button>
+        </section>
+
+        <!-- Tarjetas de Estadísticas -->
+        <section class="stats-bar" aria-label="Resumen de citas del médico">
+            <div class="stat-card">
+                <div class="stat-icono azul">📅</div>
+                <div class="stat-info">
+                    <div class="valor" id="stat-total">0</div>
+                    <div class="etiqueta">Citas hoy</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icono verde">✓</div>
+                <div class="stat-info">
+                    <div class="valor" id="stat-confirmadas">0</div>
+                    <div class="etiqueta">Atendidas</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icono amarillo">🕒</div>
+                <div class="stat-info">
+                    <div class="valor" id="stat-pendientes">0</div>
+                    <div class="etiqueta">Pendientes / Confirmadas</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icono morado">🏥</div>
+                <div class="stat-info">
+                    <div class="valor">108</div>
+                    <div class="etiqueta">Consultorio</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Pacientes del Día -->
+        <div class="seccion-header">
+            <div>
+                <h2>Mis Pacientes de Hoy</h2>
+                <p>Pacientes con consulta asignada para el turno actual</p>
+            </div>
+            <button type="button" class="btn-secondary-link" onclick="abrirAgenda()" style="background:none; border:none; cursor:pointer;">
+                Ver agenda detallada →
+            </button>
+        </div>
+
+        <section class="lista-pacientes" id="contenedor-pacientes" aria-label="Lista de pacientes">
+            <!-- Renderizado dinámico desde medico.js -->
+        </section>
+
+    </main>
+
+    <!-- ==========================================================================
+         VENTANA EMERGENTE (MODAL) DE LA HU DE AGENDA MÉDICA
+         ========================================================================== -->
+    <div class="modal-agenda-backdrop" id="modal-agenda" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="modal-agenda-content">
+            
+            <!-- Barra superior del modal -->
+            <div class="modal-agenda-header-bar">
+                <h3>
+                    <svg style="width:20px;height:20px;color:#2563eb;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    Portal Médico – Agenda del Especialista
+                </h3>
+                <button type="button" class="modal-agenda-close-btn" id="btn-cerrar-agenda" aria-label="Cerrar agenda">✕</button>
+            </div>
+
+            <!-- Contenido con scroll con la HU de Agenda completa -->
+            <div class="modal-agenda-body-scroll">
+                
+                <div class="agenda-container" style="padding: 0; max-width: 100%;">
+
+                    <!-- ── Encabezado ── -->
+                    <header class="agenda-header">
+                        <div class="agenda-header-left">
+                            <h1 class="agenda-title">Mi agenda</h1>
+                            <p class="agenda-week" id="semana-label">Semana del 9 al 13 de junio 2025</p>
+                        </div>
+                        <div class="agenda-view-toggle">
+                            <button type="button" class="toggle-btn active" id="btn-hoy" onclick="cambiarVista('hoy')">Hoy</button>
+                            <button type="button" class="toggle-btn" id="btn-semana" onclick="cambiarVista('semana')">Semana</button>
+                        </div>
+                    </header>
+
+                    <!-- ── Chips de resumen ── -->
+                    <div class="agenda-chips">
+                        <span class="chip chip-blue" id="chip-total">6 citas hoy</span>
+                        <span class="chip chip-green" id="chip-atendidas">1 atendidas</span>
+                        <span class="chip chip-yellow" id="chip-pendientes">4 pendientes</span>
+                        <span class="chip chip-purple">Consultorio 108</span>
+                    </div>
+
+                    <!-- ── Navegación de día ── -->
+                    <div class="agenda-nav">
+                        <button type="button" class="nav-arrow" id="btn-prev" onclick="cambiarDia(-1)" aria-label="Día anterior">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <polyline points="15 18 9 12 15 6"/>
+                            </svg>
+                        </button>
+                        <div class="agenda-nav-center">
+                            <p class="agenda-day-label" id="dia-label">Miércoles 11 de junio</p>
+                            <p class="agenda-today-badge" id="hoy-badge">Hoy</p>
+                        </div>
+                        <button type="button" class="nav-arrow" id="btn-next" onclick="cambiarDia(1)" aria-label="Día siguiente">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- ── Lista de citas dinámicas ── -->
+                    <section class="citas-list" id="citas-list" aria-label="Lista de citas programadas">
+                        <!-- Inyectado dinámicamente desde agenda.js -->
+                    </section>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/agenda.js"></script>
+    <script src="../js/medico.js"></script>
+</body>
+</html>

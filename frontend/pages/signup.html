@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro - Clínica Integral Salud</title>
-    <!-- Google Fonts para una tipografía idéntica a la imagen -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -14,9 +13,7 @@
 
     <main class="page-container">
 
-        <!-- Encabezado / Logo -->
         <header class="header">
-            <!-- Icono de Cruz Médica / Corazón SVG -->
             <div class="header__logo-icon">
                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M19 10.5H13.5V5C13.5 4.17 12.83 3.5 12 3.5C11.17 3.5 10.5 4.17 10.5 5V10.5H5C4.17 10.5 3.5 11.17 3.5 12C3.5 12.83 4.17 13.5 5 13.5H10.5V19C10.5 19.83 11.17 20.5 12 20.5C12.83 20.5 13.5 19.83 13.5 19V13.5H19C19.83 13.5 20.5 12.83 20.5 12C20.5 11.17 19.83 10.5 19 10.5Z" fill="#1b396a"/>
@@ -26,10 +23,8 @@
             <p class="header__subtitle">PORTAL DE PACIENTES</p>
         </header>
 
-        <!-- Tarjeta Principal Floating -->
         <section class="card">
 
-            <!-- Columna Izquierda: Información de la clínica -->
             <div class="card__info">
                 <h2 class="card__info-title">¡DESCUBRE NUESTRAS<br>ESPECIALIDADES!</h2>
 
@@ -79,7 +74,6 @@
                 </div>
             </div>
 
-            <!-- Columna Derecha: Formulario de registro -->
             <div class="card__form">
                 <h2 class="card__form-title">REGÍSTRATE COMO<br>NUEVO PACIENTE</h2>
                 <p class="card__form-subtitle">
@@ -87,55 +81,46 @@
                 </p>
 
                 <form id="registroForm" class="form">
-                    <!-- Nombre -->
                     <div class="form__group">
                         <label for="nombre" class="form__label">Nombre</label>
                         <input type="text" id="nombre" name="nombre" class="form__input" placeholder="Escribe tu nombre" required>
                     </div>
 
-                    <!-- Apellido paterno -->
                     <div class="form__group">
                         <label for="apellidoPaterno" class="form__label">Apellido paterno</label>
                         <input type="text" id="apellidoPaterno" name="apellidoPaterno" class="form__input" placeholder="Escribe tu apellido paterno" required>
                     </div>
 
-                    <!-- Apellido materno -->
                     <div class="form__group">
                         <label for="apellidoMaterno" class="form__label">Apellido materno</label>
                         <input type="text" id="apellidoMaterno" name="apellidoMaterno" class="form__input" placeholder="Escribe tu apellido materno">
                     </div>
 
-                    <!-- Fecha de nacimiento -->
                     <div class="form__group">
                         <label for="fechaNacimiento" class="form__label">Fecha de nacimiento</label>
                         <input type="date" id="fechaNacimiento" name="fechaNacimiento" class="form__input">
                     </div>  
 
-                    <!-- Teléfono -->
                     <div class="form__group">
                         <label for="telefono" class="form__label">Teléfono</label>
                         <input type="tel" id="telefono" name="telefono" class="form__input" placeholder="Escribe tu teléfono">
                     </div>
 
-                    <!-- Correo -->
                     <div class="form__group">
                         <label for="correo" class="form__label">Correo electrónico</label>
                         <input type="email" id="correo" name="correo" class="form__input" placeholder="ejemplo@correo.com" required>
                     </div>
 
-                    <!-- Contraseña -->
                     <div class="form__group">
                         <label for="contrasena" class="form__label">Contraseña</label>
                         <input type="password" id="contrasena" name="contrasena" class="form__input" placeholder="Crea una contraseña" required>
                     </div>
 
-                    <!-- Botón -->
                     <button type="submit" class="form__btn-submit">
                         CREAR CUENTA
                     </button>
                 </form>
 
-                <!-- Inicio de sesión -->
                 <p class="login-redirect">
                     ¿Ya tienes cuenta? <a href="login" class="login-redirect__link">[INICIAR SESIÓN]</a>
                 </p>

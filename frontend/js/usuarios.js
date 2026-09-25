@@ -45,7 +45,7 @@ async function cargarUsuarios() {
         }
 
         usuarios = await respuesta.json();
-        console.log("Usuarios recibidos:", usuarios);
+
         actualizarContadores();
 
         mostrarUsuarios();
@@ -150,6 +150,7 @@ function mostrarUsuarios() {
                 : usuario.tipo?.toLowerCase() === "medico"
                     ? "avatar-medico"
                     : "avatar-default";
+
         // Texto del estado.
         const estado =
             usuario.activo ? "Activo" : "Inactivo";
@@ -160,6 +161,7 @@ function mostrarUsuarios() {
                 <div class="usuario">
 
                     <div class="usuario-avatar ${claseAvatar}">
+
                         ${iniciales}
                     </div>
 
@@ -177,7 +179,9 @@ function mostrarUsuarios() {
             </td>
 
             <td>
+
                 <span class="rol ${claseRol}">
+
                     ${rol}
                 </span>
             </td>

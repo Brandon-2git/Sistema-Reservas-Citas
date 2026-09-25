@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservar Cita Médica – Portal de Pacientes</title>
+    <meta name="description" content="Agenda tu cita médica fácilmente eligiendo entre nuestras especialidades y médicos disponibles.">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/citas.css">
+</head>
+<body>
+
+<div class="citas-layout">
+
+    <!-- ── Navegación Superior ── -->
+    <nav class="top-nav">
+        <a href="../index.html" class="brand-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+            </svg>
+            <span>MediCita Salud</span>
+        </a>
+        <div class="nav-links-right">
+            <a href="medico.html" class="nav-link-btn">🩺 Portal Médico</a>
+            <a href="usuarios.html" class="nav-link-btn">👥 Usuarios</a>
+            <a href="signup.html" class="nav-link-btn">📝 Registro</a>
+        </div>
+    </nav>
+
+    <!-- ── Encabezado ── -->
+    <header class="citas-header">
+        <h1 class="citas-title">Reservar Cita Médica</h1>
+        <p class="citas-subtitle">Completa el siguiente formulario para agendar tu consulta médica con un especialista calificado.</p>
+    </header>
+
+    <!-- ── Formulario de Cita ── -->
+    <main class="cita-form-card">
+        <form id="form-reserva-cita">
+
+            <div class="form-section-title">
+                <span>📋</span> Datos del Paciente
+            </div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label class="form-label" for="nombre-paciente">Nombre completo</label>
+                    <input type="text" id="nombre-paciente" class="form-control" placeholder="Ej. Roberto Hernández Ríos" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="tel-paciente">Teléfono de contacto</label>
+                    <input type="tel" id="tel-paciente" class="form-control" placeholder="Ej. 55 9876 5432" required>
+                </div>
+            </div>
+
+            <div class="form-section-title" style="margin-top: 24px;">
+                <span>🩺</span> Especialidad y Médico
+            </div>
+            
+            <!-- Campo de Especialidad con Botón Emergente -->
+            <div class="form-grid">
+                <div class="form-group full-width">
+                    <label class="form-label">
+                        Especialidad Médica
+                        <span style="font-weight: 400; color: #64748b; font-size: 12px;">(Abre la ventana emergente para elegir)</span>
+                    </label>
+                    <div class="especialidad-picker-wrapper">
+                        <div class="especialidad-display" id="display-especialidad">
+                            <span class="esp-icon">🏥</span>
+                            <span>Ninguna especialidad seleccionada</span>
+                        </div>
+                        <button type="button" class="btn-open-modal" id="btn-abrir-modal">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            Elegir Especialidad
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label class="form-label" for="select-medico">Médico especialista disponible</label>
+                    <select id="select-medico" class="form-control" disabled required>
+                        <option value="">Primero selecciona una especialidad...</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-section-title" style="margin-top: 24px;">
+                <span>📅</span> Fecha, Horario y Motivo
+            </div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label class="form-label" for="fecha-cita">Fecha de consulta</label>
+                    <input type="date" id="fecha-cita" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="hora-cita">Horario disponible</label>
+                    <select id="hora-cita" class="form-control" required>
+                        <option value="" disabled selected>Selecciona un horario...</option>
+                        <option value="08:00">08:00 AM</option>
+                        <option value="08:45">08:45 AM</option>
+                        <option value="09:30">09:30 AM</option>
+                        <option value="10:15">10:15 AM</option>
+                        <option value="11:00">11:00 AM</option>
+                        <option value="11:30">11:30 AM</option>
+                        <option value="12:15">12:15 PM</option>
+                    </select>
+                </div>
+                <div class="form-group full-width">
+                    <label class="form-label" for="motivo-cita">Motivo de consulta / Síntomas</label>
+                    <input type="text" id="motivo-cita" class="form-control" placeholder="Ej. Seguimiento post-operatorio, revisión general..." required>
+                </div>
+                <div class="form-group full-width">
+                    <label class="form-label" for="nota-cita">Notas adicionales (opcional)</label>
+                    <textarea id="nota-cita" class="form-control" rows="2" placeholder="Alergias o antecedentes relevantes..."></textarea>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn-clear" id="btn-limpiar">Limpiar formulario</button>
+                <button type="submit" class="btn-submit">
+                    <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Confirmar Reserva
+                </button>
+            </div>
+        </form>
+    </main>
+
+</div>
+
+<!-- ==========================================================================
+     VENTANA EMERGENTE (MODAL) DE LA HU DE ESPECIALIDADES
+     ========================================================================== -->
+<div class="modal-backdrop" id="modal-especialidades" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-content">
+        
+        <!-- Encabezado del Modal -->
+        <header class="modal-header">
+            <div class="modal-title-group">
+                <h2 class="modal-title">Elige una especialidad</h2>
+                <p class="modal-subtitle">Selecciona la especialidad médica para ver los médicos disponibles.</p>
+            </div>
+            <button type="button" class="modal-close-btn" id="btn-cerrar-modal" aria-label="Cerrar ventana de especialidades">✕</button>
+        </header>
+
+        <!-- Buscador -->
+        <div class="modal-search-area">
+            <div class="search-container">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input 
+                    type="text" 
+                    id="input-busqueda" 
+                    placeholder="Buscar especialidad..." 
+                    oninput="filtrarEspecialidades()"
+                    autocomplete="off"
+                >
+            </div>
+        </div>
+
+        <!-- Grid de Tarjetas de Especialidades -->
+        <div class="modal-body-scroll">
+            <section class="grid-especialidades" id="grid-especialidades" aria-label="Lista de especialidades médicas">
+                <!-- Se inyecta dinámicamente desde citas.js -->
+            </section>
+        </div>
+
+    </div>
+</div>
+
+<!-- Notificación Flotante -->
+<div class="toast-alert" id="toast-alert" role="status" aria-live="polite"></div>
+
+<script src="../js/config.js"></script>
+<script src="../js/citas.js"></script>
+</body>
+</html>
