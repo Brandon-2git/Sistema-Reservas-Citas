@@ -569,6 +569,32 @@ button {
     font-size: 14px;
 }
 
+.rol-admin {
+    background-color: #ede9fe;
+    color: #7c3aed;
+}
+
+.rol-medico {
+    background-color: #dcfce7;
+    color: #16a34a;
+}
+
+.avatar-admin {
+    background-color: #ede9fe;
+    color: #7c3aed;
+}
+
+.avatar-medico {
+    background-color: #dcfce7;
+    color: #16a34a;
+}
+
+.avatar-default {
+    background-color: #dbeafe;
+    color: #2563eb;
+}
+
+
 .rol::before {
     content: "";
 

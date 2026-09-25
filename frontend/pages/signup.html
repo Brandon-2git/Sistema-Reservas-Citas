@@ -1,136 +1,136 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
+    <title>Registro - Clínica Integral Salud</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/registro.css">
 </head>
 <body>
 
-    <main>
+    <main class="page-container">
 
-        <!--  Encabezaod  -->
-        <header>
-            <h1>CLINICA INTEGRAL SALUD</h1>
-            <p>PORTAL DE PACIENTES</p>
+        <header class="header">
+            <div class="header__logo-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 10.5H13.5V5C13.5 4.17 12.83 3.5 12 3.5C11.17 3.5 10.5 4.17 10.5 5V10.5H5C4.17 10.5 3.5 11.17 3.5 12C3.5 12.83 4.17 13.5 5 13.5H10.5V19C10.5 19.83 11.17 20.5 12 20.5C12.83 20.5 13.5 19.83 13.5 19V13.5H19C19.83 13.5 20.5 12.83 20.5 12C20.5 11.17 19.83 10.5 19 10.5Z" fill="#1b396a"/>
+                </svg>
+            </div>
+            <h1 class="header__title">CLÍNICA INTEGRAL SALUD</h1>
+            <p class="header__subtitle">PORTAL DE PACIENTES</p>
         </header>
 
-        <!--  contenido principal -->
-        <section>
+        <section class="card">
 
-            <!--  Información de la clinica  -->
-            <div>
-                <h2>¡DESCUBRE NUESTRAS ESPECIALIDADES</h2>
-                <ul>
-                    <li>Pediatría</li>
-                    <li>Ginecología</li>
-                    <li>Odontología</li>
-                    <li>Medicina General</li>
-                    <li>Cardiología</li>
+            <div class="card__info">
+                <h2 class="card__info-title">¡DESCUBRE NUESTRAS<br>ESPECIALIDADES!</h2>
+
+                <ul class="specialties-list">
+                    <li class="specialties-list__item">
+                        <span class="specialties-list__icon">👶</span>
+                        <div>
+                            <strong>Pediatría</strong>
+                            <p>Atención integral para niños</p>
+                        </div>
+                    </li>
+                    <li class="specialties-list__item">
+                        <span class="specialties-list__icon">👩</span>
+                        <div>
+                            <strong>Ginecología</strong>
+                            <p>Salud femenina</p>
+                        </div>
+                    </li>
+                    <li class="specialties-list__item">
+                        <span class="specialties-list__icon">🦷</span>
+                        <div>
+                            <strong>Odontología</strong>
+                            <p>Cuidado dental especializado</p>
+                        </div>
+                    </li>
+                    <li class="specialties-list__item">
+                        <span class="specialties-list__icon">👨‍⚕️</span>
+                        <div>
+                            <strong>Medicina General</strong>
+                            <p>Atención integral médica</p>
+                        </div>
+                    </li>
+                    <li class="specialties-list__item">
+                        <span class="specialties-list__icon">❤️</span>
+                        <div>
+                            <strong>Cardiología</strong>
+                            <p>Atención integral especializada</p>
+                        </div>
+                    </li>
                 </ul>
 
-                <div>
-                    <h3>¡PROMOCIÓN DEL MES!</h3>
-                    <P>20% DE DESCUENTO EN CHECK-UP GENERAL</P>
+                <div class="promo-box">
+                    <div class="promo-box__text">
+                        <h3>¡PROMOCIÓN DEL MES!</h3>
+                        <p>20% DE DESCUENTO EN CHECK-UP GENERAL</p>
+                    </div>
                 </div>
-
             </div>
 
-            <!--  Formulario de registro  -->
-            <div>
-                <h2>REGISTRATE COMO PACIENTE</h2>
-                <P>
+            <div class="card__form">
+                <h2 class="card__form-title">REGÍSTRATE COMO<br>NUEVO PACIENTE</h2>
+                <p class="card__form-subtitle">
                     Crea tu cuenta para gestionar tus citas médicas.
-                </P>
+                </p>
 
-                <form id="registroForm">
-                    <!--  Nombre  -->
-                      <div>
-                        <label for="nombre">Nombre</label>
-                        <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre" required >
-                      </div>
-
-                    <!-- Apellido paterno -->
-                    <div>
-                        <label for="apellidoPaterno">Apellido paterno</label>
-                        <input type="text" id="apellidoPaterno" name="apellidoPaterno" placeholder="Escribe tu apellido paterno" required >
+                <form id="registroForm" class="form">
+                    <div class="form__group">
+                        <label for="nombre" class="form__label">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" class="form__input" placeholder="Escribe tu nombre" required>
                     </div>
 
-                    <!-- Apellido materno -->
-                    <div>
-                        <label for="apellidoMaterno">Apellido materno</label>
-                        <input
-                            type="text"
-                            id="apellidoMaterno"
-                            name="apellidoMaterno"
-                            placeholder="Escribe tu apellido materno"
-                        >
+                    <div class="form__group">
+                        <label for="apellidoPaterno" class="form__label">Apellido paterno</label>
+                        <input type="text" id="apellidoPaterno" name="apellidoPaterno" class="form__input" placeholder="Escribe tu apellido paterno" required>
                     </div>
 
-                    <!-- Fecha de nacimiento -->
-                    <div>
-                        <label for="fechaNacimiento">Fecha de nacimiento</label>
-                        <input
-                            type="date"
-                            id="fechaNacimiento"
-                            name="fechaNacimiento"
-                        >
+                    <div class="form__group">
+                        <label for="apellidoMaterno" class="form__label">Apellido materno</label>
+                        <input type="text" id="apellidoMaterno" name="apellidoMaterno" class="form__input" placeholder="Escribe tu apellido materno">
+                    </div>
+
+                    <div class="form__group">
+                        <label for="fechaNacimiento" class="form__label">Fecha de nacimiento</label>
+                        <input type="date" id="fechaNacimiento" name="fechaNacimiento" class="form__input">
                     </div>  
 
-                    <!-- Teléfono -->
-                    <div>
-                        <label for="telefono">Teléfono</label>
-                        <input
-                            type="tel"
-                            id="telefono"
-                            name="telefono"
-                            placeholder="Escribe tu teléfono"
-                        >
+                    <div class="form__group">
+                        <label for="telefono" class="form__label">Teléfono</label>
+                        <input type="tel" id="telefono" name="telefono" class="form__input" placeholder="Escribe tu teléfono">
                     </div>
 
-                    <!-- Correo -->
-                    <div>
-                        <label for="correo">Correo electrónico</label>
-                        <input
-                            type="email"
-                            id="correo"
-                            name="correo"
-                            placeholder="ejemplo@correo.com"
-                            required
-                        >
+                    <div class="form__group">
+                        <label for="correo" class="form__label">Correo electrónico</label>
+                        <input type="email" id="correo" name="correo" class="form__input" placeholder="ejemplo@correo.com" required>
                     </div>
 
-                    <!-- Contraseña -->
-                    <div>
-                        <label for="contrasena">Contraseña</label>
-                        <input
-                            type="password"
-                            id="contrasena"
-                            name="contrasena"
-                            placeholder="Crea una contraseña"
-                            required
-                        >
+                    <div class="form__group">
+                        <label for="contrasena" class="form__label">Contraseña</label>
+                        <input type="password" id="contrasena" name="contrasena" class="form__input" placeholder="Crea una contraseña" required>
                     </div>
 
-                    <!-- Botón -->
-                    <button type="submit">
+                    <button type="submit" class="form__btn-submit">
                         CREAR CUENTA
                     </button>
                 </form>
 
-                <!-- Inicio de sesión -->
-                <p>
-                    ¿Ya tienes cuenta?
-                    <a href="login">INICIAR SESIÓN</a>
+                <p class="login-redirect">
+                    ¿Ya tienes cuenta? <a href="login" class="login-redirect__link">[INICIAR SESIÓN]</a>
                 </p>
-
             </div>
-        </section>
 
+        </section>
 
     </main>
 
-<script src="../js/config.js"></script>
-<script src="../js/registro.js"></script> 
+    <script src="../js/config.js"></script>
+    <script src="../js/registro.js"></script> 
 </body>
 </html>

@@ -14,7 +14,14 @@ def listar_usuarios():
     tipo = request.args.get("tipo")
     usuarios = usuario_service.listar_usuarios(tipo)
     resultado = [
-        {"id": u.id, "nombre": u.nombre, "correo": u.correo, "tipo": u.tipo, "activo": u.activo}
+        {
+            "id": u.id,
+            "nombre": u.nombre,
+            "correo": u.correo,
+            "telefono": u.telefono,
+            "tipo": u.tipo,
+            "activo": u.activo
+        }
         for u in usuarios
     ]
     return jsonify(resultado), 200
