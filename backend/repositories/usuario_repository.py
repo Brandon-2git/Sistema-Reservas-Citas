@@ -1,13 +1,20 @@
+
 from database.database import db
 from models.usuario import Usuario
 from models.medico import Medico
 
-#busca un usuario por su correo electronico
+
+
+# Busca un usuario en la base de datos MySQL por su correo electrónico.
 def obtener_por_correo(correo):
+    # Usuario.query mira la tabla de usuarios
+    # filter_by(correo=correo): "Busca a todos los que tengan este correo"
+    # first(): "Dame solo el primero que encuentres (o None si no hay nadie)"
     return Usuario.query.filter_by(correo=correo).first()
 
-#busca un usuario por su ID
+# Busca un usuario por su ID unico en la base de datos
 def obtener_por_id(usuario_id):
+    # Usuario.query.get: busca el registro utilizando directamente la llave primaria (ID)
     return Usuario.query.get(usuario_id)
 
 #obtiene todos los usuarioa, opcionalmentte filtrados por el tipo
