@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gestión de especialidades</title>
+
+    <!-- CSS: usuarios.css trae la estructura general (sidebar, topbar); especialidades.css trae lo propio de esta pantalla -->
+    <link rel="stylesheet" href="../css/usuarios.css">
+    <link rel="stylesheet" href="../css/especialidades.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- BARRA LATERAL -->
+        <aside class="sidebar">
+
+            <div class="sidebar-header">
+                <div class="logo">&#9881;</div>
+                <div>
+                    <h2>MediCita</h2>
+                    <span>ADMIN</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+
+                <p class="nav-title">ADMINISTRACIÓN</p>
+
+                <a href="usuarios.html" class="nav-item">
+                    <span>&#128101;</span>
+                    <span>Usuarios</span>
+                </a>
+
+                <a href="#" class="nav-item active">
+                    <span>&#128203;</span>
+                    <span>Especialidades</span>
+                </a>
+
+                <a href="citas.html" class="nav-item">
+                    <span>&#128197;</span>
+                    <span>Citas & Especialidades</span>
+                </a>
+
+                <a href="medico.html" class="nav-item">
+                    <span>&#129658;</span>
+                    <span>Portal Médico</span>
+                </a>
+
+                <a href="../index.html" class="nav-item">
+                    <span>&#127968;</span>
+                    <span>Inicio</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-footer">
+
+                <div class="user-info">
+                    <div class="user-avatar">AD</div>
+                    <div>
+                        <strong>Ana Delgado</strong>
+                        <span>Administrador</span>
+                    </div>
+                </div>
+
+                <button type="button" id="btnCerrarSesion">
+                    &#8618; Cerrar sesión
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- CONTENIDO DERECHO -->
+        <div class="content">
+
+            <header class="topbar">
+
+                <button type="button" class="menu-button">&#9776;</button>
+
+                <h1>Gestión de especialidades</h1>
+
+                <div class="topbar-user">
+                    <span class="role">&#9881; Administrador</span>
+                    <div class="user-avatar">AD</div>
+                    <strong>Ana Delgado</strong>
+                </div>
+
+            </header>
+
+
+            <main class="main-content">
+
+                <section class="page-header">
+                    <div class="page-title">
+                        <h2>Gestión de especialidades</h2>
+                        <p>Registra las especialidades que los pacientes podrán elegir al agendar una cita.</p>
+                    </div>
+                </section>
+
+
+                <!-- FORMULARIO: NUEVA ESPECIALIDAD -->
+                <section class="esp-card">
+
+                    <h3>Nueva especialidad</h3>
+
+                    <form id="formularioEspecialidad" class="esp-form">
+
+                        <div class="esp-field">
+                            <label for="nombreEspecialidad">Nombre</label>
+                            <input
+                                type="text"
+                                id="nombreEspecialidad"
+                                maxlength="100"
+                                required
+                            >
+                        </div>
+
+                        <div class="esp-field">
+                            <label for="descripcionEspecialidad">Descripción</label>
+                            <textarea
+                                id="descripcionEspecialidad"
+                                maxlength="255"
+                                rows="3"
+                            ></textarea>
+                        </div>
+
+                        <!-- Icono: el valor elegido se guarda en el input oculto -->
+                        <div class="esp-field">
+                            <label>Icono</label>
+
+                            <div class="icon-row">
+                                <span id="iconoSeleccionado" class="icon-preview">Sin icono</span>
+
+                                <button type="button" id="btnElegirIcono" class="btn-secundario">
+                                    Elegir icono
+                                </button>
+                            </div>
+
+                            <input type="hidden" id="icono">
+
+                            <!-- Selector de emojis (librería emoji-picker-element), oculto hasta que se pulse el botón -->
+                            <emoji-picker id="selectorEmoji" hidden></emoji-picker>
+                        </div>
+
+                        <!-- Mensaje de éxito o de error -->
+                        <p id="mensajeFormulario" class="esp-mensaje" role="status"></p>
+
+                        <button type="submit" class="btn-principal">
+                            Registrar especialidad
+                        </button>
+
+                    </form>
+
+                </section>
+
+
+                <!-- LISTA DE ESPECIALIDADES -->
+                <section class="esp-card">
+
+                    <h3>Especialidades registradas</h3>
+
+                    <table class="esp-tabla">
+
+                        <thead>
+                            <tr>
+                                <th>ICONO</th>
+                                <th>NOMBRE</th>
+                                <th>DESCRIPCIÓN</th>
+                                <th>MÉDICOS</th>
+                            </tr>
+                        </thead>
+
+                        <!-- Se llena dinámicamente desde especialidades.js -->
+                        <tbody id="cuerpoTablaEspecialidades"></tbody>
+
+                    </table>
+
+                </section>
+
+            </main>
+
+        </div>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="../js/config.js"></script>
+
+    <!-- Selector de emojis (web component) -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+
+    <script src="../js/especialidades.js"></script>
+
+</body>
+
+</html>

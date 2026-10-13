@@ -1,0 +1,186 @@
+/* ================================
+   ESPECIALIDADES (administrador)
+   Complementa a usuarios.css
+================================ */
+
+.esp-card {
+    background-color: #ffffff;
+    border: 1px solid #dce5f2;
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.esp-card h3 {
+    font-size: 18px;
+    margin-bottom: 18px;
+}
+
+
+/* ----- Formulario ----- */
+
+.esp-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-width: 560px;
+}
+
+.esp-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.esp-field label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.esp-field input[type="text"],
+.esp-field textarea {
+    padding: 10px 12px;
+    border: 1px solid #cbd7ea;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #102a56;
+    background-color: #ffffff;
+}
+
+.esp-field textarea {
+    resize: vertical;
+}
+
+.esp-field input[type="text"]:focus,
+.esp-field textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+
+/* ----- Icono ----- */
+
+.icon-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.icon-preview {
+    min-width: 72px;
+    height: 48px;
+    padding: 0 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px dashed #cbd7ea;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #5b6b8c;
+}
+
+.icon-preview.con-icono {
+    border-style: solid;
+    font-size: 28px;
+    color: #102a56;
+}
+
+emoji-picker {
+    width: 100%;
+    max-width: 360px;
+}
+
+/* El componente define su propio display y anula el atributo hidden; esta regla lo corrige */
+emoji-picker[hidden] {
+    display: none;
+}
+
+
+/* ----- Botones ----- */
+
+.btn-principal,
+.btn-secundario {
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.btn-principal {
+    align-self: flex-start;
+    border: none;
+    background-color: #2563eb;
+    color: #ffffff;
+}
+
+.btn-principal:hover {
+    background-color: #1d4ed8;
+}
+
+.btn-principal:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-secundario {
+    border: 1px solid #cbd7ea;
+    background-color: #ffffff;
+    color: #102a56;
+}
+
+.btn-secundario:hover {
+    background-color: #f3f7ff;
+}
+
+
+/* ----- Mensajes ----- */
+
+.esp-mensaje {
+    min-height: 20px;
+    font-size: 14px;
+}
+
+.esp-mensaje.exito {
+    color: #166534;
+}
+
+.esp-mensaje.error {
+    color: #991b1b;
+}
+
+
+/* ----- Tabla ----- */
+
+.esp-tabla {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.esp-tabla th {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid #dce5f2;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: #5b6b8c;
+}
+
+.esp-tabla td {
+    padding: 12px;
+    border-bottom: 1px solid #eef2f9;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.esp-icono-celda {
+    width: 72px;
+    font-size: 24px;
+}
+
+.esp-vacio {
+    text-align: center;
+    padding: 24px;
+    color: #5b6b8c;
+}

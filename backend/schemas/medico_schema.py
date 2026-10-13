@@ -1,5 +1,5 @@
-from pydantic import BaseModel, EmailStr #BaseModel -- clase base para DTOs; EmailStr -- valida formato de correo
-from typing import Optional # Optional -- marca un campo como no obligatorio 
+from pydantic import BaseModel, EmailStr, Field, PositiveInt, field_validator #BaseModel -- clase base para DTOs; EmailStr -- valida formato de correo
+from typing import Optional, List # Optional -- marca un campo como no obligatorio 
 
 class MedicoCreateRequest(BaseModel):
     nombre: str
@@ -9,6 +9,11 @@ class MedicoCreateRequest(BaseModel):
     telefono: Optional[str] = None
     contrasena: str
     cedulaProfesional: str
-    consultorio: Optional[int] = None
-    especialidadId: Optional[int] = None
+    consultorio: Optional[str] = Field(default=None, max_length=50)
+    especialidadIds: List[PositiveInt] = Field(default_factory=list)
     horasMaximas: Optional[int] = None
+
+    @field_validator("especialidadIds")
+    @classmethod
+    def quitar_repetidos(cls, ids):
+        return list(dict.fromkeys(ids))

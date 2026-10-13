@@ -51,6 +51,11 @@
                     <span>Usuarios</span>
                 </a>
 
+                <a href="especialidades.html" class="nav-item">
+                    <span>&#128203;</span>
+                    <span>Especialidades</span>
+                </a>
+
                 <a href="citas.html" class="nav-item">
                     <span>📅</span>
                     <span>Citas & Especialidades</span>
@@ -362,8 +367,6 @@
 
                     <!-- Formulario -->
                     <form id="formularioMedico">
-
-
                         <!-- Nombre -->
                         <div class="form-group">
 
@@ -485,6 +488,67 @@
                                 type="text"
                                 id="consultorio"
                             >
+
+                        </div>
+                        
+                        <!-- Especialidades: selector desplegable con buscador -->
+                        <div class="form-group">
+
+                            <label id="etiquetaEspecialidades">
+                                Especialidades
+                            </label>
+
+                            <div class="selector-especialidades" id="selectorEspecialidades">
+
+                                <!-- Campo que muestra lo elegido y abre el panel -->
+                                <button
+                                    type="button"
+                                    id="btnSelectorEspecialidades"
+                                    class="selector-trigger"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                                    aria-labelledby="etiquetaEspecialidades"
+                                >
+                                    <span id="resumenEspecialidades" class="selector-resumen">
+                                        Especialidad
+                                    </span>
+                                    <span class="selector-flecha" aria-hidden="true">&#9662;</span>
+                                </button>
+
+                                <!-- Panel desplegable -->
+                                <div id="panelEspecialidades" class="selector-panel" hidden>
+
+                                    <input
+                                        type="search"
+                                        id="buscarEspecialidad"
+                                        class="selector-buscar"
+                                        placeholder="Buscar especialidad..."
+                                        autocomplete="off"
+                                    >
+
+                                    <!-- Se llena dinámicamente desde usuarios.js -->
+                                    <div
+                                        id="listaEspecialidades"
+                                        class="selector-lista"
+                                        role="group"
+                                        aria-labelledby="etiquetaEspecialidades"
+                                    >
+                                        <span class="texto-ayuda">
+                                            Cargando especialidades...
+                                        </span>
+                                    </div>
+
+                                    <p
+                                        id="sinResultadosEspecialidades"
+                                        class="texto-ayuda selector-sin-resultados"
+                                        hidden
+                                    >
+                                        No se encontraron especialidades.
+                                    </p>
+
+                                </div>
+
+                            </div>
 
                         </div>
 

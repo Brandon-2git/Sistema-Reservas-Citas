@@ -13,7 +13,9 @@ from routers.usuario_routes import usuario_bp
 from routers.paciente_routes import paciente_bp
 from routers.medico_routes import medico_bp
 from routers.citas_routes import citas_bp
-from models import usuario, paciente, administrador, medico, cita
+from routers.especialidad_routes import especialidad_bp
+from routers.calendario_laboral_routes import calendario_bp
+from models import usuario, paciente, administrador, medico, cita, especialidad, calendario_laboral
 
 app = Flask(__name__)
 CORS(app)
@@ -34,6 +36,8 @@ app.register_blueprint(usuario_bp)
 app.register_blueprint(paciente_bp)
 app.register_blueprint(medico_bp)
 app.register_blueprint(citas_bp)
+app.register_blueprint(especialidad_bp)
+app.register_blueprint(calendario_bp)
 
 with app.app_context():
     db.create_all()

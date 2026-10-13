@@ -8,6 +8,14 @@ const vistaUsuarios = document.getElementById("vistaUsuarios");
 const vistaAltaMedico = document.getElementById("vistaAltaMedico");
 
 const buscarUsuario = document.getElementById("buscarUsuario");
+const listaEspecialidades = document.getElementById("listaEspecialidades");
+const btnSelectorEspecialidades = document.getElementById("btnSelectorEspecialidades");
+const panelEspecialidades = document.getElementById("panelEspecialidades");
+const buscarEspecialidad = document.getElementById("buscarEspecialidad");
+const resumenEspecialidades = document.getElementById("resumenEspecialidades");
+const sinResultadosEspecialidades = document.getElementById("sinResultadosEspecialidades");
+
+const TEXTO_SELECCION_VACIA = "Especialidad";
 
 const totalUsuarios = document.getElementById("totalUsuarios");
 const totalPacientes = document.getElementById("totalPacientes");
@@ -375,6 +383,180 @@ cuerpoTabla.addEventListener("click", async (evento) => {
     }
 });
 
+// ======================================================
+// SELECTOR DE ESPECIALIDADES
+// ======================================================
+
+// Quita acentos y mayusculas para que "cardio" encuentre "Cardiología".
+function normalizarTexto(texto) {
+    return texto
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase();
+}
+
+// Abre o cierra el panel desplegable.
+function alternarPanelEspecialidades(abrir) {
+
+    panelEspecialidades.hidden = !abrir;
+
+    btnSelectorEspecialidades.setAttribute(
+        "aria-expanded",
+        String(abrir)
+    );
+
+    if (abrir) {
+        buscarEspecialidad.focus();
+    }
+}
+
+// Muestra las especialidades marcadas como etiquetas en el campo.
+function actualizarResumenEspecialidades() {
+
+    const marcadas = listaEspecialidades.querySelectorAll(
+        'input[type="checkbox"]:checked'
+    );
+
+    resumenEspecialidades.innerHTML = "";
+
+    if (marcadas.length === 0) {
+        resumenEspecialidades.textContent = TEXTO_SELECCION_VACIA;
+        resumenEspecialidades.classList.remove("con-seleccion");
+        return;
+    }
+
+    marcadas.forEach((casilla) => {
+        const etiqueta = document.createElement("span");
+        etiqueta.className = "chip-especialidad";
+        etiqueta.textContent = casilla.dataset.etiqueta;
+        resumenEspecialidades.appendChild(etiqueta);
+    });
+
+    resumenEspecialidades.classList.add("con-seleccion");
+}
+
+// Oculta las opciones que no coinciden con lo escrito en el buscador.
+function filtrarEspecialidadesDelSelector() {
+
+    const texto = normalizarTexto(buscarEspecialidad.value.trim());
+    let visibles = 0;
+
+    listaEspecialidades
+        .querySelectorAll(".opcion-especialidad")
+        .forEach((opcion) => {
+            const coincide = normalizarTexto(opcion.dataset.nombre)
+                .includes(texto);
+
+            opcion.hidden = !coincide;
+
+            if (coincide) {
+                visibles++;
+            }
+        });
+
+    sinResultadosEspecialidades.hidden = visibles !== 0;
+}
+
+// Obtiene las especialidades del backend y crea una opcion por cada una.
+async function cargarEspecialidades() {
+
+    try {
+
+        const respuesta = await fetch(
+            `${API_BASE_URL}/especialidades`
+        );
+
+        if (!respuesta.ok) {
+            throw new Error("No se pudieron obtener las especialidades.");
+        }
+
+        const especialidades = await respuesta.json();
+
+        listaEspecialidades.innerHTML = "";
+
+        if (especialidades.length === 0) {
+
+            listaEspecialidades.innerHTML = `
+                <span class="texto-ayuda">
+                    Aún no hay especialidades registradas.
+                    Créalas en la sección Especialidades.
+                </span>
+            `;
+
+            return;
+        }
+
+        especialidades.forEach((especialidad) => {
+
+            const opcion = document.createElement("label");
+            opcion.className = "opcion-especialidad";
+            opcion.dataset.nombre = especialidad.nombre;
+
+            const casilla = document.createElement("input");
+            casilla.type = "checkbox";
+            casilla.name = "especialidad";
+            casilla.value = especialidad.id;
+            casilla.dataset.etiqueta =
+                `${especialidad.icono || ""} ${especialidad.nombre}`.trim();
+
+            const icono = document.createElement("span");
+            icono.className = "opcion-icono";
+            icono.textContent = especialidad.icono || "";
+
+            const nombre = document.createElement("span");
+            nombre.textContent = especialidad.nombre;
+
+            opcion.append(casilla, icono, nombre);
+            listaEspecialidades.appendChild(opcion);
+        });
+
+        actualizarResumenEspecialidades();
+
+    } catch (error) {
+
+        console.error("Error al cargar especialidades:", error);
+
+        listaEspecialidades.innerHTML = `
+            <span class="texto-ayuda">
+                Error al cargar las especialidades.
+            </span>
+        `;
+    }
+}
+
+// Abrir o cerrar con el campo.
+btnSelectorEspecialidades.addEventListener("click", () => {
+    alternarPanelEspecialidades(panelEspecialidades.hidden);
+});
+
+// Cerrar al hacer clic fuera del selector.
+document.addEventListener("click", (evento) => {
+    if (!evento.target.closest("#selectorEspecialidades")) {
+        alternarPanelEspecialidades(false);
+    }
+});
+
+// Cerrar con la tecla Escape.
+document.addEventListener("keydown", (evento) => {
+    if (evento.key === "Escape" && !panelEspecialidades.hidden) {
+        alternarPanelEspecialidades(false);
+        btnSelectorEspecialidades.focus();
+    }
+});
+
+// Filtrar mientras se escribe.
+buscarEspecialidad.addEventListener("input", filtrarEspecialidadesDelSelector);
+
+// Actualizar las etiquetas al marcar o desmarcar.
+listaEspecialidades.addEventListener("change", actualizarResumenEspecialidades);
+
+// Al limpiar el formulario (despues de registrar), reiniciar etiquetas y buscador.
+formularioMedico.addEventListener("reset", () => {
+    setTimeout(() => {
+        actualizarResumenEspecialidades();
+        filtrarEspecialidadesDelSelector();
+    }, 0);
+});
 
 // ALTA DE MÉDICO
 formularioMedico.addEventListener(
@@ -389,6 +571,17 @@ formularioMedico.addEventListener(
                 "horasMaximas"
             ).value;
 
+        // Especialidades marcadas (ids numericos).
+        const especialidadIds = Array.from(
+            listaEspecialidades.querySelectorAll(
+                'input[type="checkbox"]:checked'
+            )
+        ).map((casilla) => Number(casilla.value));
+
+        if (especialidadIds.length === 0) {
+            alert("Selecciona al menos una especialidad.");
+            return;
+        }
 
         const datos = {
             nombre:
@@ -427,7 +620,8 @@ formularioMedico.addEventListener(
             horasMaximas:
                 horasMaximas
                     ? Number(horasMaximas)
-                    : null
+                    : null,
+            especialidadIds: especialidadIds
         };
 
 
@@ -518,3 +712,4 @@ btnAltaMedico.addEventListener("click", () => {
 // ======================================================
 
 cargarUsuarios();
+cargarEspecialidades();

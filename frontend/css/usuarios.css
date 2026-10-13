@@ -975,3 +975,221 @@ button {
 .toggle:hover {
     opacity: 0.75;
 }
+
+/* ================================
+   ESPECIALIDADES EN EL ALTA DE MEDICO
+================================ */
+
+.lista-especialidades {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.lista-especialidades .check-especialidad {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 8px 12px;
+
+    border: 1px solid #cbd7ea;
+    border-radius: 8px;
+    background-color: #ffffff;
+
+    font-size: 14px;
+    font-weight: normal;
+    color: #102a56;
+    cursor: pointer;
+}
+
+.lista-especialidades .check-especialidad:hover {
+    background-color: #f3f7ff;
+}
+
+/* Resalta la opcion marcada */
+.lista-especialidades .check-especialidad:has(input:checked) {
+    border-color: #2563eb;
+    background-color: #eff6ff;
+}
+
+.lista-especialidades input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    padding: 0;
+    accent-color: #2563eb;
+}
+
+.lista-especialidades .texto-ayuda {
+    font-size: 14px;
+    color: #5b6b8c;
+}
+
+/* ================================
+   SELECTOR DE ESPECIALIDADES (alta de medico)
+================================ */
+
+.selector-especialidades {
+    position: relative;
+}
+
+/* ----- Campo que abre el panel ----- */
+#formularioMedico .selector-especialidades .selector-trigger {
+    width: 100%;
+    min-height: 56px;
+    margin: 0;
+    padding: 10px 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    border: 1px solid #cbd7ea;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: none;
+
+    color: #102a56;
+    font-size: 15px;
+    font-weight: normal;
+    text-align: left;
+}
+
+#formularioMedico .selector-especialidades .selector-trigger:hover,
+#formularioMedico .selector-especialidades .selector-trigger[aria-expanded="true"] {
+    background-color: #ffffff;
+    border-color: #7c3aed;
+}
+
+.selector-resumen {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    color: #94a3b8;
+}
+
+.selector-resumen.con-seleccion {
+    color: #102a56;
+}
+
+.chip-especialidad {
+    padding: 4px 10px;
+    border-radius: 999px;
+    background-color: #f3e8ff;
+    color: #5b21b6;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.selector-flecha {
+    color: #5b6b8c;
+    font-size: 14px;
+    transition: transform 0.15s;
+}
+
+.selector-trigger[aria-expanded="true"] .selector-flecha {
+    transform: rotate(180deg);
+}
+
+/* ----- Panel desplegable ----- */
+
+.selector-panel {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    z-index: 20;
+
+    padding: 12px;
+
+    background-color: #ffffff;
+    border: 1px solid #dce5f2;
+    border-radius: 12px;
+    box-shadow: 0 12px 28px rgba(16, 42, 86, 0.15);
+}
+
+.selector-panel[hidden] {
+    display: none;
+}
+
+.selector-panel .selector-buscar {
+    width: 100%;
+    margin: 0 0 10px;
+    padding: 10px 12px;
+
+    border: 1px solid #cbd7ea;
+    border-radius: 8px;
+    background-color: #ffffff;
+
+    font-size: 14px;
+    color: #102a56;
+}
+
+.selector-panel .selector-buscar:focus {
+    outline: none;
+    border-color: #7c3aed;
+}
+
+/* ----- Lista de opciones ----- */
+
+.selector-lista {
+    max-height: 240px;
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.selector-lista .opcion-especialidad {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    padding: 10px 12px;
+
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: normal;
+    color: #102a56;
+    cursor: pointer;
+}
+
+/* El display anterior anula el atributo hidden; esta regla lo corrige */
+.selector-lista .opcion-especialidad[hidden] {
+    display: none;
+}
+
+.selector-lista .opcion-especialidad:hover {
+    background-color: #f5f3ff;
+}
+
+.selector-lista .opcion-especialidad:has(input:checked) {
+    background-color: #f3e8ff;
+}
+
+.selector-lista .opcion-especialidad input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    padding: 0;
+    accent-color: #7c3aed;
+}
+
+.opcion-icono {
+    width: 24px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.texto-ayuda {
+    font-size: 14px;
+    color: #5b6b8c;
+}
+
+.selector-sin-resultados {
+    padding: 10px 12px;
+}
